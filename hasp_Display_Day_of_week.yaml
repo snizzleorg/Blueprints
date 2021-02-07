@@ -1,10 +1,10 @@
 blueprint:
-  name: "HASP p[x].b[y] displays the month + date with a calendar icon"
+  name: "HASP p[x].b[y] displays day of week"
   description: |
 
     # Description
 
-    A HASP button displays month + date on the right with a calendar icon on the left.
+    A HASP button displays day of week
 
     ![Preview](https://raw.githubusercontent.com/HASwitchPlate/Blueprints/main/images/hasp_Display_Calendar_with_Icon.png)
 
