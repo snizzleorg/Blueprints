@@ -1,10 +1,10 @@
 blueprint:
-  name: "HASP p[x].b[y] displays a clock"
+  name: "HASP p[x].b[y] displays the day of week"
   description: |
 
     # Description
 
-    A HASP button displays a clock with configurable text options.
+    A HASP button displays the day of week with configurable text options.
 
     ![Preview](https://raw.githubusercontent.com/HASwitchPlate/Blueprints/main/images/hasp_Display_Clock.png)
 
@@ -74,7 +74,7 @@ blueprint:
           device_class: connectivity
     hasppage:
       name: "HASP Page"
-      description: "Select the HASP page (1-11) for the clock. Refer to the HASP Page and Button reference above."
+      description: "Select the HASP page (1-11) for the day of week. Refer to the HASP Page and Button reference above."
       default: 1
       selector:
         number:
@@ -83,7 +83,7 @@ blueprint:
           mode: slider
     haspbutton:
       name: "HASP Button"
-      description: "Select the HASP button (4-15) for the clock. Refer to the HASP Page and Button reference above."
+      description: "Select the HASP button (4-15) for the day of week. Refer to the HASP Page and Button reference above."
       default: 4
       selector:
         number:
@@ -91,8 +91,8 @@ blueprint:
           max: 15
           mode: slider
     font:
-      name: "Clock Font"
-      description: "Select the font for the clock.  Refer to the HASP Font reference above."
+      name: "Day of week Font"
+      description: "Select the font for the day of week.  Refer to the HASP Font reference above."
       default: 8
       selector:
         number:
@@ -117,16 +117,6 @@ blueprint:
           min: 0
           max: 2
           mode: slider
-    hour24:
-      name: "24 hour clock display"
-      default: false
-      selector:
-        boolean:
-    ampm:
-      name: "AM/PM suffix"
-      default: false
-      selector:
-        boolean:
     wrap:
       name: "Text wrap"
       default: false
@@ -145,14 +135,11 @@ variables:
   font: !input font
   xcen: !input xcen
   ycen: !input ycen
-  hour24: !input hour24
-  ampm: !input ampm
-  wrap: !input wrap
   isbr: "{% if wrap == true %}1{% else %}0{% endif %}"
   haspobject: '{{ "p[" ~ hasppage ~ "].b[" ~ haspbutton ~ "]" }}'
   commandtopic: '{{ "hasp/" ~ haspname ~ "/command/" ~ haspobject }}'
   jsoncommandtopic: '{{ "hasp/" ~ haspname ~ "/command/json" }}'
-  text: '{%- if hour24 == true -%}{%- set hourformat="%-H" -%}{%- else %}{%- set hourformat="%I" -%}{%- endif -%}{{(now().strftime(hourformat)|int)~now().strftime(":%M")}} {% if ampm == true %}{{now().strftime("%p")|lower}}{% endif %}'
+  text: '{{now().strftime("%A")}}'
   selectedforegroundcolortopic: '{{ "hasp/" ~ haspname ~ "/light/selectedforegroundcolor/rgb" }}'
   selectedbackgroundcolortopic: '{{ "hasp/" ~ haspname ~ "/light/selectedbackgroundcolor/rgb" }}'
   unselectedforegroundcolortopic: '{{ "hasp/" ~ haspname ~ "/light/unselectedforegroundcolor/rgb" }}'
