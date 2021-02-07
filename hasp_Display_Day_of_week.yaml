@@ -282,7 +282,7 @@ action:
                       topic: "{{commandtopic}}.bco2"
                       payload: "{{trigger.payload}}"
     #########################################################################
-    # Catch remaining triggers to display clock and apply text style
+    # Catch remaining triggers to display day of week and apply text style
     default:
       - service: mqtt.publish
         data:
