@@ -179,8 +179,8 @@ trigger:
     to: "on"
   - platform: homeassistant
     event: start
-  - platform: time_pattern
-    seconds: 0
+  - platform: time
+    at: "00:00:00"
   - platform: mqtt
     topic: "hasp/+/light/selectedforegroundcolor/rgb"
   - platform: mqtt
@@ -189,6 +189,12 @@ trigger:
     topic: "hasp/+/light/unselectedforegroundcolor/rgb"
   - platform: mqtt
     topic: "hasp/+/light/unselectedbackgroundcolor/rgb"
+
+condition:
+  - condition: state
+    entity_id: !input haspconnected
+    state: "on"
+
 
 condition:
   - condition: state
